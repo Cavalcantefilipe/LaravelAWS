@@ -1,0 +1,20 @@
+name: deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: deploy.aws
+    runs-on: ubuntu-24.04
+    steps:
+      - name: deploy
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          port: 22
+          username: laravel
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: |
+            cd www
+            git pull origin master
