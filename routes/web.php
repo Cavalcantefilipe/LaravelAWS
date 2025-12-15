@@ -9,3 +9,8 @@ Route::get('/', function () {
 Route::get('/teste', function () {
     dd('teste');
 });
+
+
+Route::get('/opcache-status', function () {
+    dump(opcache_get_status());
+});
